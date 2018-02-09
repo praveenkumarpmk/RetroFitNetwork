@@ -2,10 +2,6 @@ package com.example.praveen.test.model.UserDetail;
 
 import java.io.Serializable;
 
-/**
- * Created by H285837 on 2/8/2018.
- */
-
 public class InputParam implements Serializable {
 
     private String email;

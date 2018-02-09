@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.praveen.test.APIClient;
 import com.example.praveen.test.APIInterface;
@@ -40,6 +42,12 @@ public class LoginFragment extends Fragment {
 
     @BindView(R.id.password)
     EditText mPasswordView;
+
+    @BindView(R.id.email_sign_in_button)
+    Button email_sign_in_button;
+
+    @BindView(R.id.tvPleaseWait)
+    TextView tvPleaseWait;
 
     private UserLoginTask mAuthTask=null;
 
@@ -100,6 +108,7 @@ public class LoginFragment extends Fragment {
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+
         if (mAuthTask != null) {
             return;
         }
@@ -140,6 +149,7 @@ public class LoginFragment extends Fragment {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            hideView();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -161,6 +171,17 @@ public class LoginFragment extends Fragment {
         super.onStart();
 
     }
+
+    private void hideView(){
+        tvPleaseWait.setVisibility(View.VISIBLE);
+        email_sign_in_button.setVisibility(View.INVISIBLE);
+
+    }
+    private void showView(){
+        tvPleaseWait.setVisibility(View.INVISIBLE);
+        email_sign_in_button.setVisibility(View.VISIBLE);
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -219,13 +240,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void performLogin(String email, String password) {
+
         APIInterface apiInterface;
         apiInterface = APIClient.getClient().create(APIInterface.class);
-
-
-        /**
-         GET List Resources
-         **/
 
         InputParam inputParam = new InputParam(email,password);
         Map<String,String> headers = new HashMap<>();
@@ -236,6 +253,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 Log.d(TAG, response.code() + "");
+                showView();
                 if(response.code() == 200) {
                     LoginResponse loginResponse = response.body();
                     userResponse(loginResponse);
@@ -251,8 +269,10 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                showView();
                 call.cancel();
                 Log.i(TAG,t.getMessage());
+
                 Snackbar.make(getView(),R.string.error_login,Snackbar.LENGTH_LONG).show();
                // loginScreen.loginDetailFragment();
 

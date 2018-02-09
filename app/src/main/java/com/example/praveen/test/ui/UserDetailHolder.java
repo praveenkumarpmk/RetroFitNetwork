@@ -15,12 +15,7 @@ import butterknife.ButterKnife;
 public class UserDetailHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tvFirstName)
     public TextView tvFirstName;
-/*
-    @BindView(R.id.tvOfferDescription)
-    public TextView tvNewsDescription;
 
-    @BindView(R.id.tvMerchantName)
-    public TextView tvMerchantName;*/
 
 
     @Keep

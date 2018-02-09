@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        //Launch Login Fragment
         loginFragment();
 
     }
@@ -67,12 +68,18 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Launch Login Fragment
+     */
     @Override
     public void loginFragment() {
         FragmentUtil.changeFragment(getSupportFragmentManager(), R.id.main_content, LoginFragment.newInstance());
 
     }
 
+    /**
+     * Launch User Detail Fragment
+     */
     @Override
     public void loginDetailFragment() {
         FragmentUtil.changeFragment(getSupportFragmentManager(), R.id.main_content, LoginDetailFragment.newInstance());

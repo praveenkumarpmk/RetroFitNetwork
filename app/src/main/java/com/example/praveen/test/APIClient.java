@@ -12,10 +12,8 @@ public class APIClient {
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100, TimeUnit.SECONDS).addInterceptor(interceptor).build();
+                .readTimeout(100, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://mycotra.com/api/v1.0/")
                 .addConverterFactory(GsonConverterFactory.create())

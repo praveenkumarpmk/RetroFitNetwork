@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.praveen.test.APIClient;
 import com.example.praveen.test.APIInterface;
@@ -37,6 +39,8 @@ public class LoginDetailFragment extends Fragment {
     // UI references.
     @BindView(R.id.rvUserDetail)
     RecyclerView rvUserDetail;
+
+
 
     private Context context;
     private RecyclerAdapter<Datum, UserDetailHolder> baseRecyclerAdapter;
@@ -110,6 +114,7 @@ public class LoginDetailFragment extends Fragment {
 
     }
 
+
     //Init Recyclerview
     private void initRecyclerViews(List<Datum> newsDownloadList) {
         if (newsDownloadList != null && !newsDownloadList.isEmpty()) {
@@ -151,6 +156,7 @@ public class LoginDetailFragment extends Fragment {
     }
 
     private void performGetUserDetail() {
+
         APIInterface apiInterface;
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
@@ -169,6 +175,7 @@ public class LoginDetailFragment extends Fragment {
             @Override
             public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
                 //result = true;
+
                 UserDetailResponse loginResponse = response.body();
                 userResponse(loginResponse);
                 Log.d("TAG", response.code() + "");
@@ -178,6 +185,7 @@ public class LoginDetailFragment extends Fragment {
             @Override
             public void onFailure(Call<UserDetailResponse> call, Throwable t) {
                 call.cancel();
+
                 Log.i(TAG, t.toString());
                 Snackbar.make(getView(), R.string.error_fetch_data, Snackbar.LENGTH_LONG).show();
 
@@ -187,7 +195,7 @@ public class LoginDetailFragment extends Fragment {
     }
 
     private void userResponse(UserDetailResponse userDetailResponse) {
-
+           Log.i(TAG,userDetailResponse.toString());
     }
 
     public String getFirstName(int position) {
