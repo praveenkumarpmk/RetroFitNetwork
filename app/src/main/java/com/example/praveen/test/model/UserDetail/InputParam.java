@@ -1,4 +1,4 @@
-package com.example.praveen.test;
+package com.example.praveen.test.model.UserDetail;
 
 import java.io.Serializable;
 

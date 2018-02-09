@@ -1,13 +1,14 @@
 package com.example.praveen.test;
 
 
+import com.example.praveen.test.model.UserDetail.InputParam;
+import com.example.praveen.test.model.UserDetail.LoginResponse;
 import com.example.praveen.test.model.UserDetail.UserDetailResponse;
 
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 

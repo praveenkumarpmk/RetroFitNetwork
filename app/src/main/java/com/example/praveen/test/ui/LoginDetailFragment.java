@@ -15,8 +15,6 @@ import android.view.ViewGroup;
 
 import com.example.praveen.test.APIClient;
 import com.example.praveen.test.APIInterface;
-import com.example.praveen.test.InputParam;
-import com.example.praveen.test.LoginResponse;
 import com.example.praveen.test.R;
 import com.example.praveen.test.model.UserDetail.Datum;
 import com.example.praveen.test.model.UserDetail.UserDetailResponse;

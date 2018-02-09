@@ -1,5 +1,6 @@
-package com.example.praveen.test;
+package com.example.praveen.test.model.UserDetail;
 
+import com.example.praveen.test.model.UserDetail.User;
 import com.google.gson.annotations.SerializedName;
 
 public class Data {

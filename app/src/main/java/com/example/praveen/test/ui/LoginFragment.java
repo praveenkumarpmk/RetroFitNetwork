@@ -16,8 +16,8 @@ import android.widget.EditText;
 
 import com.example.praveen.test.APIClient;
 import com.example.praveen.test.APIInterface;
-import com.example.praveen.test.InputParam;
-import com.example.praveen.test.LoginResponse;
+import com.example.praveen.test.model.UserDetail.InputParam;
+import com.example.praveen.test.model.UserDetail.LoginResponse;
 import com.example.praveen.test.R;
 import com.example.praveen.test.util.AppConstant;
 
@@ -254,7 +254,7 @@ public class LoginFragment extends Fragment {
                 call.cancel();
                 Log.i(TAG,t.getMessage());
                 Snackbar.make(getView(),R.string.error_login,Snackbar.LENGTH_LONG).show();
-                loginScreen.loginDetailFragment();
+               // loginScreen.loginDetailFragment();
 
             }
         });
