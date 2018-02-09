@@ -21,6 +21,9 @@ import com.example.praveen.test.LoginResponse;
 import com.example.praveen.test.R;
 import com.example.praveen.test.util.AppConstant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -225,14 +228,24 @@ public class LoginFragment extends Fragment {
          **/
 
         InputParam inputParam = new InputParam(email,password);
-        Call<LoginResponse> call = apiInterface.doGetListResources(inputParam, AppConstant.APPLICATION_ID);
+        Map<String,String> headers = new HashMap<>();
+        headers.put("ApplicationId",AppConstant.APPLICATION_ID);
+        headers.put("Content-Type","application/json");
+        Call<LoginResponse> call = apiInterface.doGetListResources(inputParam,headers);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                Log.d(TAG, response.code() + "");
+                if(response.code() == 200) {
+                    LoginResponse loginResponse = response.body();
+                    userResponse(loginResponse);
+                    Snackbar.make(getView(), R.string.login_success, Snackbar.LENGTH_LONG).show();
+                }
+                else {
+                    Snackbar.make(getView(), "Error Code :: "+response.code(), Snackbar.LENGTH_LONG).show();
+                }
 
-                LoginResponse loginResponse = response.body();
-                userResponse(loginResponse);
-                Log.d("TAG", response.code() + "");
+
 
             }
 

@@ -24,7 +24,9 @@ import com.example.praveen.test.util.AppConstant;
 import com.example.praveen.test.util.RecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -160,7 +162,11 @@ public class LoginDetailFragment extends Fragment {
          **/
 
         String token = loginScreen.getToken();
-        Call<UserDetailResponse> call = apiInterface.getUserDetail(token, AppConstant.APPLICATION_ID);
+        Map<String,String> headers = new HashMap<>();
+        headers.put("token",token);
+        headers.put("ApplicationId",AppConstant.APPLICATION_ID);
+        headers.put("Content-Type","application/json");
+        Call<UserDetailResponse> call = apiInterface.getUserDetail(headers);
         call.enqueue(new Callback<UserDetailResponse>() {
             @Override
             public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
@@ -174,7 +180,7 @@ public class LoginDetailFragment extends Fragment {
             @Override
             public void onFailure(Call<UserDetailResponse> call, Throwable t) {
                 call.cancel();
-                Log.i(TAG, t.getMessage());
+                Log.i(TAG, t.toString());
                 Snackbar.make(getView(), R.string.error_fetch_data, Snackbar.LENGTH_LONG).show();
 
             }

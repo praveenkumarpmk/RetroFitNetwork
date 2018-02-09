@@ -20,6 +20,7 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
+    <string name="login_success">Login Success</string>
     <string name="error_login">Error While Login</string>
     <string name="error_fetch_data">Error While Fetch User Data</string>
 </resources>
