@@ -201,7 +201,6 @@ public class LoginFragment extends Fragment {
             // TODO: attempt authentication against a network service.
 
             performLogin(mEmail,mPassword);
-               //  loginScreen.loginDetailFragment();
             // TODO: register the new account here.
             return true;
         }
@@ -257,7 +256,6 @@ public class LoginFragment extends Fragment {
                 if(response.code() == 200) {
                     LoginResponse loginResponse = response.body();
                     userResponse(loginResponse);
-                    Snackbar.make(getView(), R.string.login_success, Snackbar.LENGTH_LONG).show();
                 }
                 else {
                     Snackbar.make(getView(), "Error Code :: "+response.code(), Snackbar.LENGTH_LONG).show();
@@ -274,7 +272,6 @@ public class LoginFragment extends Fragment {
                 Log.i(TAG,t.getMessage());
 
                 Snackbar.make(getView(),R.string.error_login,Snackbar.LENGTH_LONG).show();
-               // loginScreen.loginDetailFragment();
 
             }
         });
