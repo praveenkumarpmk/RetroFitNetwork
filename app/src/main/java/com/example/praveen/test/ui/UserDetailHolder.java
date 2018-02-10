@@ -16,6 +16,29 @@ public class UserDetailHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tvFirstName)
     public TextView tvFirstName;
 
+    @BindView(R.id.tvPublic)
+    public TextView tvPublic;
+
+    @BindView(R.id.tvDate)
+    public TextView tvDate;
+
+    @BindView(R.id.tvDateTime)
+    public TextView tvDateTime;
+
+    @BindView(R.id.tvTime)
+    public TextView tvTime;
+
+    @BindView(R.id.tvFrom)
+    public TextView tvFrom;
+
+    @BindView(R.id.tvTo)
+    public TextView tvTo;
+
+    @BindView(R.id.tvDistance)
+    public TextView tvDistance;
+
+
+
 
 
     @Keep

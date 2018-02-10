@@ -102,9 +102,9 @@ public class LoginDetailFragment extends Fragment {
         Datum datum = new Datum();
         datum.setFirstName("Kadlikoa");
         Datum datum1 = new Datum();
-        datum.setFirstName("Kadlikoaccc");
+        datum1.setFirstName("Kadlikoaccc");
         Datum datum2 = new Datum();
-        datum.setFirstName("Kadlikocccca");
+        datum2.setFirstName("Kadlikocccca");
         data.add(datum);
         data.add(datum1);
         data.add(datum2);
@@ -123,7 +123,7 @@ public class LoginDetailFragment extends Fragment {
             rvUserDetail.setLayoutManager(layoutManager);
 
             baseRecyclerAdapter =
-                    new RecyclerAdapter<>(context, newsDownloadList, offerNotificationListener, UserDetailHolder.class, R.layout.user_detail);
+                    new RecyclerAdapter<>(context, newsDownloadList, offerNotificationListener, UserDetailHolder.class, R.layout.user_detail_content);
             rvUserDetail.setAdapter(baseRecyclerAdapter);
 
         }
@@ -175,10 +175,10 @@ public class LoginDetailFragment extends Fragment {
             @Override
             public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
                 //result = true;
+                Log.d("TAG Response", response.body().toString());
 
                 UserDetailResponse loginResponse = response.body();
                 userResponse(loginResponse);
-                Log.d("TAG", response.code() + "");
 
             }
 

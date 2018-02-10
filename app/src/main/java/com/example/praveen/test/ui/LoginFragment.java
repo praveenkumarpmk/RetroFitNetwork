@@ -201,7 +201,7 @@ public class LoginFragment extends Fragment {
             // TODO: attempt authentication against a network service.
 
             performLogin(mEmail,mPassword);
-
+               //  loginScreen.loginDetailFragment();
             // TODO: register the new account here.
             return true;
         }
