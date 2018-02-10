@@ -3,7 +3,6 @@ package com.example.praveen.test.ui;
 import android.support.annotation.Keep;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.praveen.test.R;
@@ -36,9 +35,14 @@ public class UserDetailHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tvDistance)
     public TextView tvDistance;
+    @BindView(R.id.tvSharesCount)
+    public TextView tvSharesCount;
 
+    @BindView(R.id.tvCommentCount)
+    public TextView tvCommentCount;
 
-
+    @BindView(R.id.tvLikeCount)
+    public TextView tvLikeCount;
 
 
     @Keep

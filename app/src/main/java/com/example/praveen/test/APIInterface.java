@@ -17,8 +17,7 @@ public interface APIInterface {
 
     @POST("users/login")
     Call<LoginResponse> doGetListResources(@Body InputParam inputParam, @HeaderMap Map<String, String> headers);
-
-    @POST("/posts/posts")
+    @GET("posts/posts")
     Call<UserDetailResponse> getUserDetail(@HeaderMap Map<String, String> headers);
 
 }

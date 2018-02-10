@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.praveen.test.APIClient;
 import com.example.praveen.test.APIInterface;
@@ -41,7 +39,6 @@ public class LoginDetailFragment extends Fragment {
     RecyclerView rvUserDetail;
 
 
-
     private Context context;
     private RecyclerAdapter<Datum, UserDetailHolder> baseRecyclerAdapter;
     private LoginScreen loginScreen;
@@ -61,6 +58,9 @@ public class LoginDetailFragment extends Fragment {
                 @Override
                 public void onBind(UserDetailHolder holder, final int position) {
                     holder.tvFirstName.setText(getFirstName(position));
+                    holder.tvCommentCount.setText(data.get(position).getCommentCount()+" Comment .");
+                    holder.tvLikeCount.setText(data.get(position).getLikes()+" Shares");
+                    holder.tvSharesCount.setText(data.get(position).getShareCount()+" Shares");
                 }
             };
 
@@ -98,17 +98,6 @@ public class LoginDetailFragment extends Fragment {
 
     private void initUi() {
 
-
-        Datum datum = new Datum();
-        datum.setFirstName("Kadlikoa");
-        Datum datum1 = new Datum();
-        datum1.setFirstName("Kadlikoaccc");
-        Datum datum2 = new Datum();
-        datum2.setFirstName("Kadlikocccca");
-        data.add(datum);
-        data.add(datum1);
-        data.add(datum2);
-        initRecyclerViews(data);
         userDetailTask = new UserDetailTask();
         userDetailTask.execute();
 
@@ -166,19 +155,20 @@ public class LoginDetailFragment extends Fragment {
          **/
 
         String token = loginScreen.getToken();
-        Map<String,String> headers = new HashMap<>();
-        headers.put("token",token);
-        headers.put("ApplicationId",AppConstant.APPLICATION_ID);
-        headers.put("Content-Type","application/json");
+        Map<String, String> headers = new HashMap<>();
+        headers.put("token", token);
+        headers.put("ApplicationId", AppConstant.APPLICATION_ID);
+        headers.put("Content-Type", "application/json");
         Call<UserDetailResponse> call = apiInterface.getUserDetail(headers);
         call.enqueue(new Callback<UserDetailResponse>() {
             @Override
             public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
                 //result = true;
-                Log.d("TAG Response", response.body().toString());
-
-                UserDetailResponse loginResponse = response.body();
-                userResponse(loginResponse);
+                Log.d("TAG Response", response.toString());
+                if (200 == response.code()) {
+                    UserDetailResponse loginResponse = response.body();
+                    userResponse(loginResponse);
+                }
 
             }
 
@@ -195,7 +185,10 @@ public class LoginDetailFragment extends Fragment {
     }
 
     private void userResponse(UserDetailResponse userDetailResponse) {
-           Log.i(TAG,userDetailResponse.toString());
+        Log.i(TAG, userDetailResponse.toString());
+        data = userDetailResponse.getData().getPosts().getData();
+        initRecyclerViews(data);
+
     }
 
     public String getFirstName(int position) {
