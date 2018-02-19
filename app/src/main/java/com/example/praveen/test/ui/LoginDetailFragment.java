@@ -18,6 +18,7 @@ import com.example.praveen.test.APIInterface;
 import com.example.praveen.test.R;
 import com.example.praveen.test.model.UserDetail.Datum;
 import com.example.praveen.test.model.UserDetail.UserDetailResponse;
+import com.example.praveen.test.sqlite.DatabaseHandler;
 import com.example.praveen.test.util.AppConstant;
 import com.example.praveen.test.util.RecyclerAdapter;
 
@@ -45,6 +46,7 @@ public class LoginDetailFragment extends Fragment {
     private List<Datum> data = new ArrayList<>();
     private UserDetailTask userDetailTask;
     private static final String TAG = LoginDetailFragment.class.getSimpleName();
+    private DatabaseHandler db;
 
     public static LoginDetailFragment newInstance() {
 
@@ -70,6 +72,7 @@ public class LoginDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         context = getActivity();
         loginScreen = (LoginScreen) context;
+        db = new DatabaseHandler(context);
         setHasOptionsMenu(true);
 
     }
